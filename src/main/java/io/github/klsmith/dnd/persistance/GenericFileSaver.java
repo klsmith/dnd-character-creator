@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import io.github.klsmith.dnd.persistance.model.File;
 import io.github.klsmith.dnd.serialization.Serializer;
 
 public class GenericFileSaver<S> implements FileSaver {

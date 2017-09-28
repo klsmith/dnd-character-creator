@@ -1,5 +1,7 @@
 package io.github.klsmith.dnd.persistance;
 
+import io.github.klsmith.dnd.persistance.model.File;
+
 /**
  * An interface representing the generic ability to save FileData objects to and
  * from the file system. <br/>

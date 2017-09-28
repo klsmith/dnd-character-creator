@@ -1,4 +1,4 @@
-package io.github.klsmith.dnd.persistance;
+package io.github.klsmith.dnd.persistance.model;
 
 public class GenericLocation implements Location {
 
