@@ -4,6 +4,7 @@ import io.github.klsmith.dnd.persistance.FileLoader;
 import io.github.klsmith.dnd.persistance.FileSaver;
 import io.github.klsmith.dnd.persistance.GenericFileLoader;
 import io.github.klsmith.dnd.persistance.GenericFileSaver;
+import io.github.klsmith.dnd.persistance.model.Data;
 import io.github.klsmith.dnd.persistance.model.File;
 import io.github.klsmith.dnd.persistance.model.Location;
 import io.github.klsmith.dnd.serialization.JsonSerializer;
@@ -17,7 +18,7 @@ public final class App {
 
 	private static String name;
 	private static Location location;
-	private static String data;
+	private static Data<?> data;
 
 	public static void main(String[] args) {
 		initTools();
@@ -35,7 +36,7 @@ public final class App {
 	private static void initData() {
 		name = "character.json";
 		location = Location.at("/temp/");
-		data = "Hello World";
+		data = Data.get("Hello World", String.class);
 	}
 
 	private static void testSaving() {
@@ -49,7 +50,7 @@ public final class App {
 
 	private static void testLoading() {
 		System.out.println("Loading...");
-		loader.load(name, location, String.class).ifPresent(App::printFile);
+		loader.load(name, location, data.getType()).ifPresent(App::printFile);
 		System.out.println("Done!");
 	}
 

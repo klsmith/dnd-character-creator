@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import io.github.klsmith.dnd.persistance.model.Data;
 import io.github.klsmith.dnd.persistance.model.File;
 import io.github.klsmith.dnd.persistance.model.Location;
 import io.github.klsmith.dnd.serialization.Serializer;
@@ -28,7 +29,7 @@ public class GenericFileLoader<S> implements FileLoader {
 		if (fileBytes.isPresent()) {
 			final Optional<T> fileData = serializer.deserializeBytes(fileBytes.get(), type);
 			if (fileData.isPresent()) {
-				return Optional.of(File.get(name, location.getCopy(), fileData.get()));
+				return Optional.of(File.get(name, location.getCopy(), Data.get(fileData.get(), type)));
 			}
 		}
 		return Optional.empty();

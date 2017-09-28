@@ -6,15 +6,15 @@ public final class File<T> implements Copyable<File<T>> {
 
 	private final transient String name;
 	private final transient Location location;
-	private final T data;
+	private final Data<T> data;
 
-	private File(String name, Location location, T data) {
+	private File(String name, Location location, Data<T> data) {
 		this.name = name;
 		this.location = location.getCopy();
 		this.data = data;
 	}
 
-	public static <T> File<T> get(String name, Location location, T data) {
+	public static <T> File<T> get(String name, Location location, Data<T> data) {
 		return new File<>(name, location, data);
 	}
 
@@ -26,7 +26,7 @@ public final class File<T> implements Copyable<File<T>> {
 		return location;
 	}
 
-	public T getData() {
+	public Data<T> getData() {
 		return data;
 	}
 
@@ -36,15 +36,15 @@ public final class File<T> implements Copyable<File<T>> {
 	}
 
 	public File<T> getCopy(String newName) {
-		return get(newName, location, data);
+		return get(newName, location.getCopy(), data);
 	}
 
 	public File<T> getCopy(Location newLocation) {
-		return get(name, newLocation, data);
+		return get(name, newLocation.getCopy(), data);
 	}
 
 	public File<T> getCopy(String newName, Location newLocation) {
-		return get(newName, newLocation, data);
+		return get(newName, newLocation.getCopy(), data);
 	}
 
 }
