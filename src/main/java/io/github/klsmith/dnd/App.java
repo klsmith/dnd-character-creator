@@ -5,7 +5,6 @@ import io.github.klsmith.dnd.persistance.FileSaver;
 import io.github.klsmith.dnd.persistance.GenericFileLoader;
 import io.github.klsmith.dnd.persistance.GenericFileSaver;
 import io.github.klsmith.dnd.persistance.model.File;
-import io.github.klsmith.dnd.persistance.model.GenericLocation;
 import io.github.klsmith.dnd.persistance.model.Location;
 import io.github.klsmith.dnd.serialization.JsonSerializer;
 import io.github.klsmith.dnd.serialization.Serializer;
@@ -35,7 +34,7 @@ public final class App {
 
 	private static void initData() {
 		name = "character.json";
-		location = GenericLocation.get("/temp/");
+		location = Location.at("/temp/");
 		data = "Hello World";
 	}
 
