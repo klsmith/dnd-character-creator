@@ -1,16 +1,16 @@
 package io.github.klsmith.dnd.persistance;
 
-public class GenericFileLocation implements FileLocation {
+public class GenericLocation implements Location {
 
     private static final String JAVA_FILE_DELIMITER = "/";
     private final String location;
 
-    private GenericFileLocation(String location) {
+    private GenericLocation(String location) {
         this.location = location;
     }
 
-    public static GenericFileLocation get(String path) {
-        return new GenericFileLocation(getValidLocationString(path));
+    public static GenericLocation get(String path) {
+        return new GenericLocation(getValidLocationString(path));
     }
 
     public static String getValidLocationString(String location) {
@@ -26,7 +26,7 @@ public class GenericFileLocation implements FileLocation {
     }
 
     @Override
-    public FileLocation getCopy() {
+    public Location getCopy() {
         return this;
     }
 

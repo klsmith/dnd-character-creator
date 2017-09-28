@@ -1,5 +1,7 @@
 package io.github.klsmith.dnd.serialization;
 
+import java.util.Optional;
+
 import com.google.gson.Gson;
 
 /**
@@ -12,36 +14,36 @@ import com.google.gson.Gson;
  */
 public class JsonSerializer implements Serializer<String> {
 
-    private static final JsonSerializer INSTANCE = new JsonSerializer();
+	private static final JsonSerializer INSTANCE = new JsonSerializer();
 
-    private final Gson gson;
+	private final Gson gson;
 
-    private JsonSerializer() {
-        this.gson = new Gson();
-    }
+	private JsonSerializer() {
+		this.gson = new Gson();
+	}
 
-    public static JsonSerializer get() {
-        return INSTANCE;
-    }
+	public static JsonSerializer get() {
+		return INSTANCE;
+	}
 
-    @Override
-    public String serialize(Object obj) {
-        return gson.toJson(obj);
-    }
+	@Override
+	public String serialize(Object obj) {
+		return gson.toJson(obj);
+	}
 
-    @Override
-    public <T> T deserialize(String json, Class<T> type) {
-        return gson.fromJson(json, type);
-    }
+	@Override
+	public <T> Optional<T> deserialize(String json, Class<T> type) {
+		return Optional.ofNullable(gson.fromJson(json, type));
+	}
 
-    @Override
-    public byte[] serializeBytes(Object obj) {
-        return serialize(obj).getBytes();
-    }
+	@Override
+	public byte[] serializeBytes(Object obj) {
+		return serialize(obj).getBytes();
+	}
 
-    @Override
-    public <TYPE> TYPE deserializeBytes(byte[] data, Class<TYPE> type) {
-        return deserialize(new String(data), type);
-    }
+	@Override
+	public <T> Optional<T> deserializeBytes(byte[] data, Class<T> type) {
+		return deserialize(new String(data), type);
+	}
 
 }

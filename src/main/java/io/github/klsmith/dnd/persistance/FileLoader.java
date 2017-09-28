@@ -1,7 +1,9 @@
 package io.github.klsmith.dnd.persistance;
 
+import java.util.Optional;
+
 public interface FileLoader {
 
-    <DATA> File<DATA> load(String name, FileLocation location, Class<DATA> type);
+	<T> Optional<File<T>> load(String name, Location location, Class<T> type);
 
 }
